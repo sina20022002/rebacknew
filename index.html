@@ -66,7 +66,7 @@
 </head>
 <body>
   <div class="cart">
-    <img id="product-image" src="https://www.apple.com/newsroom/images/product/iphone/standard/Apple-iPhone-14-Pro-lineup-hero-220907.jpg.og.jpg" alt="آیفون 14 پرو">
+    <img id="product-image" src="" alt="آیفون 14 پرو">
     <h2>آیفون 14 پرو</h2>
     <h3>تک سیمکارت رنگ طلایی</h3>
     <p class="price">قیمت: ۸,۰۰۰,۰۰۰ تومان</p>
@@ -76,20 +76,24 @@
   </div>
 
   <script>
-    // اگر تصویری در localStorage ذخیره شده بود، بارگذاری کن
+    const defaultImage = "https://api2.zoomit.ir/media/652d20568716201626d1510e";
+
+    // موقع لود صفحه
     window.addEventListener('DOMContentLoaded', () => {
       const savedImage = localStorage.getItem('productImage');
       if (savedImage) {
         document.getElementById('product-image').src = savedImage;
+      } else {
+        document.getElementById('product-image').src = defaultImage;
       }
     });
 
-    // کلیک روی دکمه خرید
+    // دکمه خرید
     document.getElementById('buyBtn').addEventListener('click', function() {
       alert('شما هک شدی یه موجودی بگیر بخندیم سلام');
     });
 
-    // تغییر عکس محصول وقتی عکس انتخاب میشه
+    // وقتی عکس جدید آپلود بشه
     document.getElementById('imageUpload').addEventListener('change', function(event) {
       const file = event.target.files[0];
       if (file) {
@@ -97,7 +101,6 @@
         reader.onload = function(e) {
           const imgSrc = e.target.result;
           document.getElementById('product-image').src = imgSrc;
-          // ذخیره عکس در localStorage
           localStorage.setItem('productImage', imgSrc);
         };
         reader.readAsDataURL(file);
@@ -106,4 +109,3 @@
   </script>
 </body>
 </html>
-طراحی sina2002
